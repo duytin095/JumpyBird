@@ -1,4 +1,4 @@
-import { _decorator, Canvas, Component, director, Node, UITransform, Vec3 } from 'cc';
+import { _decorator, Canvas, Component, director, log, Node, UITransform, Vec3 } from 'cc';
 const { ccclass, property } = _decorator;
 import { GameManager } from './GameManager';
 
@@ -43,7 +43,6 @@ export class Ground extends Component {
     }
 
     startUp(){
-        
         this.groundWidth1 = this.ground1.getComponent(UITransform).width;
         this.groundWidth2 = this.ground2.getComponent(UITransform).width;
         this.groundWidth3 = this.ground3.getComponent(UITransform).width;

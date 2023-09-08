@@ -1,5 +1,6 @@
 import { _decorator, CCInteger, Component, Node } from 'cc';
 import { Ground } from './Ground';
+import { UIManager } from './UIManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameManager')
@@ -9,6 +10,11 @@ export class GameManager extends Component {
    })
 
    public ground: Ground
+
+   @property({
+      type:UIManager
+   })
+   public uiManager: UIManager;
 
    @property({
     type: CCInteger
