@@ -6,5 +6,15 @@
       "height": 960,
       "fitWidth": false
     }
-  }
+  },
+  "layer": [
+    {
+      "name": "BG",
+      "value": 1
+    },
+    {
+      "name": "Player",
+      "value": 2
+    }
+  ]
 }

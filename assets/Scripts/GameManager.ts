@@ -1,4 +1,4 @@
-import { _decorator, CCInteger, Component, Node } from 'cc';
+import { _decorator, CCInteger, Component, Node, Prefab, instantiate, director, Canvas } from 'cc';
 import { Ground } from './Ground';
 import { UIManager } from './UIManager';
 const { ccclass, property } = _decorator;
@@ -8,13 +8,22 @@ export class GameManager extends Component {
    @property({
         type:Ground,
    })
-
    public ground: Ground
 
    @property({
       type:UIManager
    })
-   public uiManager: UIManager;
+   private uiManager: UIManager;
+
+   @property({
+      type:Prefab
+   })
+   private pipePrefab:Prefab = null;
+
+   @property({
+      type:Node
+   })
+   private canvas:Node;
 
    @property({
     type: CCInteger
@@ -24,7 +33,18 @@ export class GameManager extends Component {
    @property({
     type:CCInteger
    })
-   public pipeSpeed:number = 200;
+   private pipeSpeed:number = 200;
+
+
+
+   start(): void {
+      let node = instantiate(this.pipePrefab);
+      node.parent = this.canvas;
+      
+      node.setPosition(400,0,0);
+      node.setSiblingIndex(4);
+      console.log('pipe idx '+node.getSiblingIndex());
+   }
 
    onload(){
 
@@ -35,6 +55,10 @@ export class GameManager extends Component {
    }
    startGame(){
     
+   }
+
+   spawnPrefabs(){
+      
    }
 }
 
