@@ -1,4 +1,4 @@
-import { _decorator, CCFloat, Component, find, Game, math, Node, Vec3} from 'cc';
+import { _decorator, CCFloat, Component, find, math, Node, Vec3} from 'cc';
 import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
 
@@ -8,31 +8,37 @@ export class Pipes extends Component{
     @property({
         type:Node,
     })
-    public pipesNode:Node;
+    private pipesNode:Node;
 
     @property({
         type:CCFloat,
     })
-    public speed:number = -3;
+    private speed:number = -3;
 
     @property({
-        type:GameManager
+        type:GameManager,
     })
     private gameManager:GameManager;
+
+    private distanceBetweenPipes: number = 300;
+    private disappearBound: number = -350;
 
     start() {
         this.pipesNode = this.node;  
         this.gameManager = find("GameManager").getComponent(GameManager);
+
         if(this.gameManager == null){
-            let game = new Game;
-            game.pause();
+            console.error('GameManager in Pipes is null')
         }
     }
-    update(deltaTime: number) {
+    update() {
         this.pipesNode.translate(new Vec3(this.speed, 0, 0), 1);
  
-        if(this.pipesNode.position.x < -350){
-            this.pipesNode.setPosition(this.gameManager.getLastPipeXpos() + 300 , math.randomRange(0, -576), 0);
+        if(this.pipesNode.position.x < this.disappearBound){
+            let xPos = this.gameManager.getLastPipeXpos() + this.distanceBetweenPipes;
+            let randomYPos = math.randomRange(0, -576);
+
+            this.pipesNode.setPosition(xPos, randomYPos, 0);
             this.gameManager.setLastPipe(this.pipesNode);
         }
     }

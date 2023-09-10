@@ -1,4 +1,4 @@
-import { _decorator, CCInteger, Component, Node, Prefab, instantiate, AsyncDelegate, math, CCFloat } from 'cc';
+import { _decorator, CCInteger, Component, Node, Prefab, instantiate, math, CCFloat } from 'cc';
 import { Ground } from './Ground';
 import { UIManager } from './UIManager';
 const { ccclass, property } = _decorator;
@@ -26,32 +26,17 @@ export class GameManager extends Component {
    private canvas:Node;
 
    @property({
-    type: CCInteger
-   })
-   public speed: number = 300;
-
-   @property({
-    type:CCInteger
-   })
-
-   @property({
-      type:CCFloat
-   })
-   private lastPipeXPos:number = 400;
-
-   private _isSpawnDone:boolean = false;
-
-
-   @property({
       type:Node
    })
    private lastPipe:Node = null;
 
-
+   @property({
+      type:Number,
+   })
+   public speed:number = 300;
 
 
    start(): void {
-      //this.spawnNodeAfterSeconds(2);
       let startPos = 400;
       for(let i = 0; i < 3; i++){
          let node = this.spawnNode(startPos);
@@ -62,35 +47,9 @@ export class GameManager extends Component {
       }
    }
 
-
-   protected update(){
-       this.getLastPipeXpos();
-   }
    public getLastPipeXpos(){
       return this.lastPipe.position.x;
    }
-
-   // async spawnNodeAfterSeconds(time:number){
-   //    let pipesToSpawn = 5;
-   //    let count = 0;
-   //    while(count < pipesToSpawn){
-   //       const ad = new AsyncDelegate();
-   //       ad.add(() =>{
-   //          return new Promise((resolve, reject) => {
-   //             setTimeout(() => {
-   //                this.spawnNode();
-   //                resolve();
-   //             }, time * 1000);
-   //          })
-   //       });
-   //       count++;
-   //       await ad.dispatch();
-   //       if(count == 5){
-   //          this._isSpawnDone = true;
-   //          console.log('spawn done', this._isSpawnDone);
-   //       }
-   //    }
-   // }
 
    spawnNode(xPos:number){
       let node = instantiate(this.pipePrefab);
@@ -106,26 +65,6 @@ export class GameManager extends Component {
       this.lastPipe = _lastPipe;
       return this.lastPipe;
    }
-
-   isSpawnDone(){
-      return this._isSpawnDone;
-   }
-
-   onload(){
-
-   }
-
-   initListener(){
-
-   }
-   startGame(){
-    
-   }
-
-   spawnPrefabs(){
-      
-   }
-
 
 }
 

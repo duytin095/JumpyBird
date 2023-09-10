@@ -126,8 +126,6 @@
     "canvas": {
       "__id__": 6
     },
-    "speed": 300,
-    "lastPipeXPos": 400,
     "lastPipe": null,
     "_id": "e7ZpOxBzNHNKc+ujstj+vy"
   },
