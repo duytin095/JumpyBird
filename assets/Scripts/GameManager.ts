@@ -1,4 +1,4 @@
-import { _decorator, CCInteger, Component, Node, Prefab, instantiate, director, Canvas } from 'cc';
+import { _decorator, CCInteger, Component, Node, Prefab, instantiate, AsyncDelegate, math, CCFloat } from 'cc';
 import { Ground } from './Ground';
 import { UIManager } from './UIManager';
 const { ccclass, property } = _decorator;
@@ -33,17 +33,82 @@ export class GameManager extends Component {
    @property({
     type:CCInteger
    })
-   private pipeSpeed:number = 200;
+
+   @property({
+      type:CCFloat
+   })
+   private lastPipeXPos:number = 400;
+
+   private _isSpawnDone:boolean = false;
+
+
+   @property({
+      type:Node
+   })
+   private lastPipe:Node = null;
+
 
 
 
    start(): void {
+      //this.spawnNodeAfterSeconds(2);
+      let startPos = 400;
+      for(let i = 0; i < 3; i++){
+         let node = this.spawnNode(startPos);
+         startPos += 300;
+         if(i == 2){
+            this.lastPipe = node;
+         }
+      }
+   }
+
+
+   protected update(){
+       this.getLastPipeXpos();
+   }
+   public getLastPipeXpos(){
+      return this.lastPipe.position.x;
+   }
+
+   // async spawnNodeAfterSeconds(time:number){
+   //    let pipesToSpawn = 5;
+   //    let count = 0;
+   //    while(count < pipesToSpawn){
+   //       const ad = new AsyncDelegate();
+   //       ad.add(() =>{
+   //          return new Promise((resolve, reject) => {
+   //             setTimeout(() => {
+   //                this.spawnNode();
+   //                resolve();
+   //             }, time * 1000);
+   //          })
+   //       });
+   //       count++;
+   //       await ad.dispatch();
+   //       if(count == 5){
+   //          this._isSpawnDone = true;
+   //          console.log('spawn done', this._isSpawnDone);
+   //       }
+   //    }
+   // }
+
+   spawnNode(xPos:number){
       let node = instantiate(this.pipePrefab);
+      let randomYPos = math.randomRange(0, -576);
       node.parent = this.canvas;
-      
-      node.setPosition(400,0,0);
+      node.setPosition(xPos,randomYPos,0);
       node.setSiblingIndex(4);
-      console.log('pipe idx '+node.getSiblingIndex());
+      return node;
+   }
+
+
+   setLastPipe(_lastPipe:Node){
+      this.lastPipe = _lastPipe;
+      return this.lastPipe;
+   }
+
+   isSpawnDone(){
+      return this._isSpawnDone;
    }
 
    onload(){
@@ -60,6 +125,8 @@ export class GameManager extends Component {
    spawnPrefabs(){
       
    }
+
+
 }
 
 

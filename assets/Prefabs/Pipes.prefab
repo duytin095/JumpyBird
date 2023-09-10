@@ -495,7 +495,7 @@
     "__prefab": {
       "__id__": 23
     },
-    "speed": 1,
+    "speed": -3,
     "_id": ""
   },
   {
@@ -511,6 +511,7 @@
       "__id__": 0
     },
     "fileId": "6bVQRxSSFNbYeHk4X8I0R9",
+    "instance": null,
     "targetOverrides": null
   }
 ]
