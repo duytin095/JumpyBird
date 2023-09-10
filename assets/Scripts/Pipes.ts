@@ -1,4 +1,4 @@
-import { _decorator, CCFloat, Component, find, math, Node, Vec3} from 'cc';
+import { _decorator, BoxCollider2D, CCFloat, Collider2D, Component, find, math, Node, Vec3} from 'cc';
 import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
 
@@ -16,6 +16,11 @@ export class Pipes extends Component{
     private speed:number = -3;
 
     @property({
+        type:BoxCollider2D
+    })
+    private pointCollider:Collider2D;
+
+    @property({
         type:GameManager,
     })
     private gameManager:GameManager;
@@ -30,6 +35,8 @@ export class Pipes extends Component{
         if(this.gameManager == null){
             console.error('GameManager in Pipes is null')
         }
+
+        
     }
     update() {
         this.pipesNode.translate(new Vec3(this.speed, 0, 0), 1);
@@ -42,6 +49,9 @@ export class Pipes extends Component{
             this.gameManager.setLastPipe(this.pipesNode);
         }
     }
+
+    
+    
 }
 
 
