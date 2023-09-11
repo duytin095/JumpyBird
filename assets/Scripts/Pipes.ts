@@ -1,5 +1,6 @@
-import { _decorator, BoxCollider2D, CCFloat, Collider2D, Component, find, math, Node, Vec3} from 'cc';
+import { _decorator, BoxCollider2D, CCFloat, Collider2D, Component, Contact2DType, find, IPhysics2DContact, log, math, Node, PhysicsSystem2D, Vec3} from 'cc';
 import { GameManager } from './GameManager';
+import { UIManager } from './UIManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('Pipes')
@@ -25,19 +26,22 @@ export class Pipes extends Component{
     })
     private gameManager:GameManager;
 
+
+
     private distanceBetweenPipes: number = 300;
     private disappearBound: number = -350;
+    
 
     start() {
         this.pipesNode = this.node;  
         this.gameManager = find("GameManager").getComponent(GameManager);
 
-        if(this.gameManager == null){
+        if(!this.gameManager){
             console.error('GameManager in Pipes is null')
         }
 
-        
     }
+      
     update() {
         this.pipesNode.translate(new Vec3(this.speed, 0, 0), 1);
  
@@ -50,6 +54,8 @@ export class Pipes extends Component{
         }
     }
 
+
+   
     
     
 }

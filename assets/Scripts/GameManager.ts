@@ -38,10 +38,11 @@ export class GameManager extends Component {
 
    start(): void {
       let startPos = 400;
-      for(let i = 0; i < 3; i++){
+      let maxPipeToSpawn = 4;
+      for(let i = 0; i < maxPipeToSpawn; i++){
          let node = this.spawnNode(startPos);
          startPos += 300;
-         if(i == 2){
+         if(i == maxPipeToSpawn - 1){
             this.lastPipe = node;
          }
       }

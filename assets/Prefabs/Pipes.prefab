@@ -241,7 +241,7 @@
     "__prefab": {
       "__id__": 10
     },
-    "enabledContactListener": false,
+    "enabledContactListener": true,
     "bullet": false,
     "awakeOnLoad": true,
     "_group": 1,
@@ -515,7 +515,7 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 70,
+      "x": 0.148,
       "y": 355,
       "z": 0
     },
@@ -636,12 +636,12 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": -14.7
+      "y": -21
     },
     "_size": {
       "__type__": "cc.Size",
       "width": 33.6,
-      "height": 270.9
+      "height": 185.4
     },
     "_id": ""
   },
@@ -661,7 +661,7 @@
     "__prefab": {
       "__id__": 30
     },
-    "enabledContactListener": true,
+    "enabledContactListener": false,
     "bullet": false,
     "awakeOnLoad": true,
     "_group": 1,
