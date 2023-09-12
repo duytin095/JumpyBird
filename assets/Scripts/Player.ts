@@ -70,11 +70,11 @@ export class Player extends Component {
         input.on(Input.EventType.TOUCH_START, this.jump, this);
     }
 
-
     onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
         if(otherCollider.tag == 2){ 
-            director.pause();
             this.uiManager.showRessult();
+            director.pause();
+            
         }
     }
     onEndContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {

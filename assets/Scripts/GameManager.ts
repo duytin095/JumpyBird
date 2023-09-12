@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Prefab, instantiate, math } from 'cc';
+import { _decorator, Component, Node, Prefab, instantiate, math, director } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameManager')
@@ -56,6 +56,12 @@ export class GameManager extends Component {
             this.lastPipe = node;
          }
       }
+   }
+
+   restartGame(){
+      director.reset();
+      console.log('reset the game');
+      
    }
 
    isGameStart(){

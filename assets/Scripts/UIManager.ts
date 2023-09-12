@@ -1,4 +1,4 @@
-import { _decorator, Component, find, Input, Label, Node } from 'cc';
+import { _decorator, Button, Component, director, find, Input, Label, Node, sys } from 'cc';
 import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
 
@@ -15,9 +15,9 @@ export class UIManager extends Component {
     private highScoreLabel: Label;
 
     @property ({
-        type:Label
+        type:Button
     })
-    private restartLabel: Label;
+    private restartButton: Button;
 
 
     private highScore: number = 0;
@@ -25,7 +25,16 @@ export class UIManager extends Component {
 
     start(){
         this.currentScore = 0;
+        this.restartButton.node.on(Node.EventType.TOUCH_START, (reloadGame:void) =>{
+            director.loadScene('Game');
+            director.resume();
+        });
     }
+
+    protected onLoad(): void {
+        
+    }
+ 
 
     updateScore(score: number){
         this.currentScore = score;
@@ -36,17 +45,25 @@ export class UIManager extends Component {
         this.updateScore(this.currentScore + addScore);
     }
 
+    
     // ResetScore(){
     //     this.UpdateScore(0);
     //     this.HideScore();
     // }
 
     showRessult(){
-        // this.highScore = Math.max(this.highScore, this.currentScore);
-        // this.highScoreLabel.string = "High Score: " + this.highScore;
-        this.restartLabel.node.active = true;
-    }
+        this.highScore = Math.max(parseInt(sys.localStorage.getItem('score')), this.currentScore);
+        sys.localStorage.setItem('score', this.highScore.toString());
 
+        console.log('high score>>>:>: ' + sys.localStorage.getItem('score'));
+
+        let temp = sys.localStorage.getItem('score');
+        //console.log('temp: ' + temp);
+        
+        this.highScoreLabel.string = "High Score: " + temp;
+        this.highScoreLabel.node.active = true;
+        this.restartButton.node.active = true;
+    }
     // HideScore(){
     //     this.highScoreLabel.node.active = false;
     //     this.tryAgainLable.node.active = false;
