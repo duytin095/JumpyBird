@@ -45,22 +45,15 @@ export class UIManager extends Component {
         this.updateScore(this.currentScore + addScore);
     }
 
-    showRessult(){       
-        console.log('alo');
-         
+    showRessult(){        
         if(isNaN(parseInt(sys.localStorage.getItem('score')))){
             sys.localStorage.setItem('score', this.currentScore.toString());
-            console.log("Yo it NaN");
             
         }else{
-            console.log('OPPPPPP');
             this.highScore = Math.max(parseInt(sys.localStorage.getItem('score')), this.currentScore);
             sys.localStorage.setItem('score', this.highScore.toString());
         }
 
-        console.log(this.highScore+" high score");
-
-        
         this.highScoreLabel.string = "High Score: " + parseInt(sys.localStorage.getItem('score'));
         this.highScoreLabel.node.active = true;
         this.restartButton.node.active = true;
