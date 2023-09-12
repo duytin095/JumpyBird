@@ -9,8 +9,8 @@ export class Ground extends Component {
 
     update(deltaTime: number) {
         this.node.translate(new Vec3(-0.7, 0 , 0), 1);
-        if(this.node.position.x < - 960){
-            this.node.setPosition(new Vec3(320, this.node.position.y, 0));
+        if(this.node.position.x < -640){
+            this.node.setPosition(new Vec3(640, this.node.position.y, 0));
         }
     }
 }
