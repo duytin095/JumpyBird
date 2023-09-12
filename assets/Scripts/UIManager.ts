@@ -7,41 +7,39 @@ export class UIManager extends Component {
     @property({
         type:Label
     })
-    public currentScoreLable: Label;
+    private currentScoreLable: Label;
 
     @property({
         type:Label
     })
-    public highScoreLabel: Label;
+    private highScoreLabel: Label;
 
     @property ({
         type:Label
     })
-    public tryAgainLable: Label;
+    private tryAgainLable: Label;
 
 
-    highScore: number = 0;
-    currentScore: number;
+    private highScore: number = 0;
+    private currentScore: number;
 
-    protected start(): void {
+    start(){
         this.currentScore = 0;
     }
-
 
     UpdateScore(score: number){
         this.currentScore = score;
         this.currentScoreLable.string = ('' + this.currentScore);
     }
 
+    AddScore(addScore: number){
+        this.UpdateScore(this.currentScore + addScore);
+    }
 
     // ResetScore(){
     //     this.UpdateScore(0);
     //     this.HideScore();
     // }
-
-    AddScore(addScore: number){
-        this.UpdateScore(this.currentScore + addScore);
-    }
 
     // ShowRessult(){
     //     this.highScore = Math.max(this.highScore, this.currentScore);

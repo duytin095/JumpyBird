@@ -39,8 +39,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 277.335,
-      "y": 0,
+      "x": 413.71799999999996,
+      "y": -278.1980000000001,
       "z": 0
     },
     "_lrot": {
@@ -207,7 +207,7 @@
     "__prefab": {
       "__id__": 8
     },
-    "tag": 0,
+    "tag": 2,
     "_group": 1,
     "_density": 1,
     "_sensor": false,
@@ -241,7 +241,7 @@
     "__prefab": {
       "__id__": 10
     },
-    "enabledContactListener": true,
+    "enabledContactListener": false,
     "bullet": false,
     "awakeOnLoad": true,
     "_group": 1,
@@ -417,7 +417,7 @@
     "__prefab": {
       "__id__": 18
     },
-    "tag": 0,
+    "tag": 2,
     "_group": 1,
     "_density": 1,
     "_sensor": false,
@@ -724,7 +724,6 @@
       "__id__": 0
     },
     "fileId": "6bVQRxSSFNbYeHk4X8I0R9",
-    "instance": null,
     "targetOverrides": null
   }
 ]

@@ -14,12 +14,7 @@ export class Pipes extends Component{
     @property({
         type:CCFloat,
     })
-    private speed:number = -3;
-
-    @property({
-        type:BoxCollider2D
-    })
-    private pointCollider:Collider2D;
+    private speed:number = -0.1;
 
     @property({
         type:GameManager,

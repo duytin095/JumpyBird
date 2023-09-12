@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, input, Input, log, math, RigidBody2D, Vec2, Quat, CCFloat, Collider2D, find, Contact2DType, PhysicsSystem2D, IPhysics2DContact, ERigidBody2DType, EventTouch } from 'cc';
+import { _decorator, Component, Node, input, Input, RigidBody2D, Vec2, Quat, CCFloat, Collider2D, find, Contact2DType, PhysicsSystem2D, IPhysics2DContact, ERigidBody2DType, Game, director } from 'cc';
 import { UIManager } from './UIManager';
 import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
@@ -7,121 +7,99 @@ const { ccclass, property } = _decorator;
 export class Player extends Component {
 
     @property({
-        type:Node,
+        type: Node,
     })
-    private player:Node;
+    private player: Node;
 
     @property({
-        type:RigidBody2D,
+        type: RigidBody2D,
         tooltip: "Rigidbody on player"
     })
-    private rig:RigidBody2D; 
+    private rig: RigidBody2D;
 
     @property({
-        type:Number,
-        tooltip: "player's velocity"
+        type: CCFloat,
     })
-
+    private velocity: number = 1;
 
     @property({
-        type:CCFloat,
+        type: Collider2D
     })
-    public velocity:number = 1;
-
-    @property({
-        type:Collider2D
-    })
-    private collider:Collider2D;
+    private collider: Collider2D;
 
 
-    private upAngle:number = 0.1;
-    private downAngle:number = -0.01;
-    private uiManager:UIManager;
-    private gameManager:GameManager;
+    private upAngle: number = 0.1;
+    private downAngle: number = -0.01;
+    private uiManager: UIManager;
+    private gameManager: GameManager;
 
 
     start(): void {
         this.player = this.node;
-        this.rig = this.player.getComponent(RigidBody2D);  
+        this.rig = this.player.getComponent(RigidBody2D);
         this.rig.type = ERigidBody2DType.Kinematic;
-        
-        
+
+
         this.uiManager = find("Canvas/UIManager").getComponent(UIManager);
-        if(!this.uiManager) {
+        if (!this.uiManager) {
             console.error('UIManager in Player is null');
         }
 
         this.gameManager = find("GameManager").getComponent(GameManager);
-        if(!this.gameManager) {
+        if (!this.gameManager) {
             console.error('GameManager in Player is null');
         }
 
-        // Registering callback functions for a single collider
         this.collider = this.getComponent(Collider2D);
         if (this.collider) {
             this.collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
             this.collider.on(Contact2DType.END_CONTACT, this.onEndContact, this);
-            this.collider.on(Contact2DType.PRE_SOLVE, this.onPreSolve, this);
-            this.collider.on(Contact2DType.POST_SOLVE, this.onPostSolve, this);
         }
 
-        // Registering global contact callback functions
         if (PhysicsSystem2D.instance) {
             PhysicsSystem2D.instance.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
             PhysicsSystem2D.instance.on(Contact2DType.END_CONTACT, this.onEndContact, this);
-            PhysicsSystem2D.instance.on(Contact2DType.PRE_SOLVE, this.onPreSolve, this);
-            PhysicsSystem2D.instance.on(Contact2DType.POST_SOLVE, this.onPostSolve, this);
         }
 
     }
 
-
-
     update(deltaTime: number) {
-        if(this.rig.linearVelocity.y < 0){
+        if (this.rig.linearVelocity.y < 0) {
             this.rotatePLayer(0, 0, this.node.getRotation().z + this.downAngle);
         }
         input.on(Input.EventType.TOUCH_START, this.jump, this);
     }
 
 
-    onBeginContact (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
-        // will be called once when two colliders begin to contact
-        
+    onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
+        if(otherCollider.tag == 2){
+            console.log(otherCollider.name);
+            director.pause();
+        }
     }
-    onEndContact (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
-        // will be called once when the contact between two colliders just about to end.
-        if(otherCollider.tag == 1){
+    onEndContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
+        if (otherCollider.tag == 1) {
             this.uiManager.AddScore(1);
-          }
+        }
+
         
     }
-    onPreSolve (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
-        // will be called every time collider contact should be resolved
-    }
-    onPostSolve (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
-        // will be called every time collider contact should be resolved
-    }
 
 
-    rotatePLayer(x:number, y:number, z:number){
+    rotatePLayer(x: number, y: number, z: number) {
         this.node.setRotation(new Quat(x, y, z));
     }
 
-    jump(){
+    jump() {
         this.rig.linearVelocity = new Vec2(0, this.velocity);
         this.rotatePLayer(0, 0, this.upAngle);
 
-
-        if(!this.gameManager.isGameStart){
-            this.gameManager.startGame();
+        if (!this.gameManager.isGameStart()) {
+            this.gameManager.startSpawnPipes();
             this.rig.type = ERigidBody2DType.Dynamic;
         }
-        
+
     }
-
-
-
 
 }
 
