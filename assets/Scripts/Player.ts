@@ -1,5 +1,6 @@
-import { _decorator, Component, Node, input, Input, log, math, RigidBody2D, Vec2, Quat, CCFloat, Collider2D, find, Contact2DType, PhysicsSystem2D, IPhysics2DContact } from 'cc';
+import { _decorator, Component, Node, input, Input, log, math, RigidBody2D, Vec2, Quat, CCFloat, Collider2D, find, Contact2DType, PhysicsSystem2D, IPhysics2DContact, ERigidBody2DType, EventTouch } from 'cc';
 import { UIManager } from './UIManager';
+import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('Player')
@@ -36,17 +37,23 @@ export class Player extends Component {
     private upAngle:number = 0.1;
     private downAngle:number = -0.01;
     private uiManager:UIManager;
+    private gameManager:GameManager;
 
 
     start(): void {
         this.player = this.node;
         this.rig = this.player.getComponent(RigidBody2D);  
+        this.rig.type = ERigidBody2DType.Kinematic;
         
         
         this.uiManager = find("Canvas/UIManager").getComponent(UIManager);
         if(!this.uiManager) {
-            console.error('UIManager in Pipes is null');
-            
+            console.error('UIManager in Player is null');
+        }
+
+        this.gameManager = find("GameManager").getComponent(GameManager);
+        if(!this.gameManager) {
+            console.error('GameManager in Player is null');
         }
 
         // Registering callback functions for a single collider
@@ -68,12 +75,15 @@ export class Player extends Component {
 
     }
 
+
+
     update(deltaTime: number) {
         if(this.rig.linearVelocity.y < 0){
             this.rotatePLayer(0, 0, this.node.getRotation().z + this.downAngle);
         }
         input.on(Input.EventType.TOUCH_START, this.jump, this);
     }
+
 
     onBeginContact (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
         // will be called once when two colliders begin to contact
@@ -82,9 +92,6 @@ export class Player extends Component {
     onEndContact (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
         // will be called once when the contact between two colliders just about to end.
         if(otherCollider.tag == 1){
-            //add score
-            // update UI
-            console.log(otherCollider.name);
             this.uiManager.AddScore(1);
           }
         
@@ -104,6 +111,13 @@ export class Player extends Component {
     jump(){
         this.rig.linearVelocity = new Vec2(0, this.velocity);
         this.rotatePLayer(0, 0, this.upAngle);
+
+
+        if(!this.gameManager.isGameStart){
+            this.gameManager.startGame();
+            this.rig.type = ERigidBody2DType.Dynamic;
+        }
+        
     }
 
 

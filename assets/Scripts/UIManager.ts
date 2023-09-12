@@ -1,4 +1,5 @@
-import { _decorator, Component, Label, Node } from 'cc';
+import { _decorator, Component, find, Input, Label, Node } from 'cc';
+import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('UIManager')
@@ -18,6 +19,7 @@ export class UIManager extends Component {
     })
     public tryAgainLable: Label;
 
+
     highScore: number = 0;
     currentScore: number;
 
@@ -30,6 +32,7 @@ export class UIManager extends Component {
         this.currentScore = score;
         this.currentScoreLable.string = ('' + this.currentScore);
     }
+
 
     // ResetScore(){
     //     this.UpdateScore(0);
