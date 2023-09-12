@@ -17,7 +17,7 @@ export class UIManager extends Component {
     @property ({
         type:Label
     })
-    private tryAgainLable: Label;
+    private restartLabel: Label;
 
 
     private highScore: number = 0;
@@ -27,13 +27,13 @@ export class UIManager extends Component {
         this.currentScore = 0;
     }
 
-    UpdateScore(score: number){
+    updateScore(score: number){
         this.currentScore = score;
         this.currentScoreLable.string = ('' + this.currentScore);
     }
 
-    AddScore(addScore: number){
-        this.UpdateScore(this.currentScore + addScore);
+    addScore(addScore: number){
+        this.updateScore(this.currentScore + addScore);
     }
 
     // ResetScore(){
@@ -41,11 +41,11 @@ export class UIManager extends Component {
     //     this.HideScore();
     // }
 
-    // ShowRessult(){
-    //     this.highScore = Math.max(this.highScore, this.currentScore);
-    //     this.highScoreLabel.string = "High Score: " + this.highScore;
-    //     this.tryAgainLable.node.active = true;
-    // }
+    showRessult(){
+        // this.highScore = Math.max(this.highScore, this.currentScore);
+        // this.highScoreLabel.string = "High Score: " + this.highScore;
+        this.restartLabel.node.active = true;
+    }
 
     // HideScore(){
     //     this.highScoreLabel.node.active = false;

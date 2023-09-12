@@ -72,17 +72,15 @@ export class Player extends Component {
 
 
     onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
-        if(otherCollider.tag == 2){
-            console.log(otherCollider.name);
+        if(otherCollider.tag == 2){ 
             director.pause();
+            this.uiManager.showRessult();
         }
     }
     onEndContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
         if (otherCollider.tag == 1) {
-            this.uiManager.AddScore(1);
+            this.uiManager.addScore(1);
         }
-
-        
     }
 
 
