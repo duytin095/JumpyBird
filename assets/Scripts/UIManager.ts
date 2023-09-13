@@ -37,7 +37,7 @@ export class UIManager extends Component {
     }
 
     addScore(addScore: number){
-        this.updateScore(this.currentScore + addScore);
+        this.updateScore(this.currentScore + addScore);      
     }
 
     showRessult(){        

@@ -210,7 +210,7 @@
     "tag": 2,
     "_group": 1,
     "_density": 1,
-    "_sensor": false,
+    "_sensor": true,
     "_friction": 0.2,
     "_restitution": 0,
     "_offset": {
@@ -272,6 +272,8 @@
       "__id__": 0
     },
     "fileId": "17QwaZtatMVYknXruzOSpX",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
@@ -418,7 +420,7 @@
     "tag": 2,
     "_group": 1,
     "_density": 1,
-    "_sensor": false,
+    "_sensor": true,
     "_friction": 0.2,
     "_restitution": 0,
     "_offset": {
@@ -514,7 +516,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0.148,
-      "y": 355,
+      "y": 367.696,
       "z": 0
     },
     "_lrot": {
@@ -634,12 +636,12 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": -21
+      "y": -27.8
     },
     "_size": {
       "__type__": "cc.Size",
       "width": 33.6,
-      "height": 185.4
+      "height": 198.9
     },
     "_id": ""
   },

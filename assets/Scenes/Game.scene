@@ -660,31 +660,8 @@
     "player": null,
     "rig": null,
     "velocity": 20,
+    "collider": null,
     "_id": "98xSgqewtFM71gbPiQloKZ"
-  },
-  {
-    "__type__": "cc.CircleCollider2D",
-    "_name": "",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "node": {
-      "__id__": 13
-    },
-    "_enabled": true,
-    "__prefab": null,
-    "tag": 0,
-    "_group": 1,
-    "_density": 1,
-    "_sensor": false,
-    "_friction": 0.2,
-    "_restitution": 0,
-    "_offset": {
-      "__type__": "cc.Vec2",
-      "x": 3.1,
-      "y": 0
-    },
-    "_radius": 12.6,
-    "_id": "5dgfFqgaVJb4XIFE5SrnQL"
   },
   {
     "__type__": "cc.Animation",
@@ -724,6 +701,30 @@
     "_playOnAwake": true,
     "_volume": 1,
     "_id": "54qVaIlTVLt4G02vM+UEWT"
+  },
+  {
+    "__type__": "cc.CircleCollider2D",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 13
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "tag": 0,
+    "_group": 1,
+    "_density": 1,
+    "_sensor": false,
+    "_friction": 0.2,
+    "_restitution": 0,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_radius": 17,
+    "_id": "22T4mIr1FKSYGBdAgKt1xi"
   },
   {
     "__type__": "cc.Node",

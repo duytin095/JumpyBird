@@ -23,7 +23,8 @@ export class GameManager extends Component {
    })
    public speed: number = 300;
 
-   private _isGameStart: boolean = false;
+   private isGameStart: boolean = false;
+   private isAbleToMove:boolean = true;
 
 
    getLastPipeXpos() {
@@ -40,12 +41,12 @@ export class GameManager extends Component {
       let randomYPos = math.randomRange(0, -576);
       node.parent = this.canvas;
       node.setPosition(xPos, randomYPos, 0);
-      node.setSiblingIndex(3);
+      node.setSiblingIndex(2);
       return node;
    }
 
    startSpawnPipes() {
-      this._isGameStart = true;
+      this.isGameStart = true;
       let spawnPos = 400;
       let maxPipeToSpawn = 4;
       for (let i = 0; i < maxPipeToSpawn; i++) {
@@ -58,10 +59,18 @@ export class GameManager extends Component {
       }
    }
 
-   isGameStart(){
-      return this._isGameStart;
+   startGame(){
+      return this.isGameStart;
    }
 
+   gameOver(){
+      this.isGameStart = false;
+      this.isAbleToMove = false;
+   }
+
+   allowPlayerTouch(){
+      return this.isAbleToMove;
+   }
 
 }
 

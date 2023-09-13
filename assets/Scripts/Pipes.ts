@@ -38,7 +38,10 @@ export class Pipes extends Component{
     }
       
     update() {
-        this.pipesNode.translate(new Vec3(this.speed, 0, 0), 1);
+
+        if(this.gameManager.startGame()){
+            this.pipesNode.translate(new Vec3(this.speed, 0, 0), 1);
+        }
  
         if(this.pipesNode.position.x < this.disappearBound){
             let xPos = this.gameManager.getLastPipeXpos() + this.distanceBetweenPipes;
@@ -48,10 +51,6 @@ export class Pipes extends Component{
             this.gameManager.setLastPipe(this.pipesNode);
         }
     }
-
-
-   
-    
     
 }
 
