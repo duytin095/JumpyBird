@@ -157,7 +157,7 @@
       "__expectedType__": "cc.AudioClip"
     },
     "hit": {
-      "__uuid__": "2d157431-4840-4d97-97bb-4aa98928a171",
+      "__uuid__": "e47d730b-9d15-471f-b127-bc34ae7e962c",
       "__expectedType__": "cc.AudioClip"
     },
     "_id": "03oe93hm9PFa2q5ISUIcux"
@@ -354,7 +354,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 480.00000000000006,
+    "_orthoHeight": 480,
     "_near": 0,
     "_far": 1000,
     "_color": {
