@@ -31,11 +31,6 @@ export class UIManager extends Component {
         });
     }
 
-    protected onLoad(): void {
-        
-    }
- 
-
     updateScore(score: number){
         this.currentScore = score;
         this.currentScoreLable.string = ('' + this.currentScore);

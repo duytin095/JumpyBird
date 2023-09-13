@@ -58,12 +58,6 @@ export class GameManager extends Component {
       }
    }
 
-   restartGame(){
-      director.reset();
-      console.log('reset the game');
-      
-   }
-
    isGameStart(){
       return this._isGameStart;
    }
