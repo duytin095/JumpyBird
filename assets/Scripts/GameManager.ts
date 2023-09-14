@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Prefab, instantiate, math, director } from 'cc';
+import { _decorator, Component, Node, Prefab, instantiate, math} from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameManager')
@@ -18,14 +18,14 @@ export class GameManager extends Component {
    })
    private lastPipe: Node = null;
 
-   @property({
-      type: Number,
-   })
-   public speed: number = 300;
-
    private isGameStart: boolean = false;
-   private isAbleToMove:boolean = true;
+   private isAbleToMove: boolean = true;
 
+   static instance: GameManager;
+
+   onLoad() {
+      GameManager.instance = this.node.getComponent(GameManager);
+   }
 
    getLastPipeXpos() {
       return this.lastPipe.position.x;
@@ -48,7 +48,7 @@ export class GameManager extends Component {
    startSpawnPipes() {
       this.isGameStart = true;
       let spawnPos = 400;
-      let maxPipeToSpawn = 4;
+      let maxPipeToSpawn = 3;
       for (let i = 0; i < maxPipeToSpawn; i++) {
          let node = this.spawnPipe(spawnPos);
          spawnPos += 300;
@@ -59,16 +59,21 @@ export class GameManager extends Component {
       }
    }
 
-   startGame(){
+   startGame() {
       return this.isGameStart;
    }
 
-   gameOver(){
+   gameOver() {
       this.isGameStart = false;
       this.isAbleToMove = false;
    }
 
-   allowPlayerTouch(){
+   isPlayerAbleToMove() {
+      return this.isAbleToMove;
+   }
+
+   allowPlayerToMove() {
+      this.isAbleToMove = true;
       return this.isAbleToMove;
    }
 

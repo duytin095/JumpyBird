@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, input, Input, RigidBody2D, Vec2, Quat, CCFloat, Collider2D, find, Contact2DType, PhysicsSystem2D, IPhysics2DContact, ERigidBody2DType, Game, director, AudioSource, error, Animation } from 'cc';
+import { _decorator, Component, Node, input, Input, RigidBody2D, Vec2, Quat, CCFloat, Collider2D, find, Contact2DType, PhysicsSystem2D, IPhysics2DContact, ERigidBody2DType, AudioSource, Animation } from 'cc';
 import { UIManager } from './UIManager';
 import { GameManager } from './GameManager';
 import { AudioManager } from './AudioManager';
@@ -6,15 +6,9 @@ const { ccclass, property } = _decorator;
 
 @ccclass('Player')
 export class Player extends Component {
-
-    @property({
-        type: Node,
-    })
-    private player: Node;
-
     @property({
         type: RigidBody2D,
-        tooltip: "Rigidbody on player"
+        tooltip: "Rigidbody on Player"
     })
     private rig: RigidBody2D;
 
@@ -32,46 +26,24 @@ export class Player extends Component {
     private upAngle: number = 0.1;
     private downAngle: number = -0.01;
     private uiManager: UIManager;
-    private gameManager: GameManager;
     private audioManager: AudioManager;
     private audioSource: AudioSource;
     private anim: Animation;
 
 
     start(): void {
-        this.player = this.node;
-        this.rig = this.player.getComponent(RigidBody2D);
+        this.rig = this.node.getComponent(RigidBody2D);
         this.audioSource = this.node.getComponent(AudioSource);
         this.anim = this.node.getComponent(Animation);
+        this.uiManager = find("Canvas/UIManager").getComponent(UIManager);
+        this.audioManager = find("AudioManager").getComponent(AudioManager);
         this.anim.play();
         this.rig.type = ERigidBody2DType.Kinematic;
  
-
-
-        if(!this.audioSource){
-            console.error('Audio Source in Player is null');
-            
-        }
-
-        if(!this.anim){
-            console.error('Animation in Player is null');
-            
-        }
-
-        this.uiManager = find("Canvas/UIManager").getComponent(UIManager);
-        if (!this.uiManager) {
-            console.error('UIManager in Player is null');
-        }
-
-        this.gameManager = find("GameManager").getComponent(GameManager);
-        if (!this.gameManager) {
-            console.error('GameManager in Player is null');
-        }
-
-        this.audioManager = find("AudioManager").getComponent(AudioManager);
-        if (!this.audioManager) {
-            console.error('AudioManager in Player is null');
-        }
+        if(!this.audioSource)       { console.error('Audio Source in Player is null'); }
+        if(!this.anim)              { console.error('Animation in Player is null'); }
+        if (!this.uiManager)        { console.error('UIManager in Player is null'); }
+        if (!this.audioManager)     { console.error('AudioManager in Player is null'); }
 
 
         this.collider = this.getComponent(Collider2D);
@@ -97,15 +69,15 @@ export class Player extends Component {
     }
 
     onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
-        if(otherCollider.tag == 2 && this.gameManager.startGame()){ // collide with the pipe and the ground
+        if(otherCollider.tag == 2 && GameManager.instance.startGame()){ // collide with the pipe and the ground
             this.anim.pause();
             this.playAudio(this.audioManager.hit);
             this.uiManager.showRessult();
-            this.gameManager.gameOver();
+            GameManager.instance.gameOver();
         }
     }
     onEndContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
-        if (otherCollider.tag == 1 && this.gameManager.startGame()) { // get through the pipe
+        if (otherCollider.tag == 1 && GameManager.instance.startGame()) { // get through the pipe
             this.uiManager.addScore(1);
             this.playAudio(this.audioManager.point);
         }
@@ -117,13 +89,13 @@ export class Player extends Component {
     }
 
     jump() {
-        if(this.gameManager.allowPlayerTouch()){
+        if(GameManager.instance.isPlayerAbleToMove()){
             this.rig.linearVelocity = new Vec2(0, this.velocity);
             this.rotatePLayer(0, 0, this.upAngle);
             this.playAudio(this.audioManager.wing);
     
-            if (!this.gameManager.startGame()) {
-                this.gameManager.startSpawnPipes();
+            if (!GameManager.instance.startGame()) {
+                GameManager.instance.startSpawnPipes();
                 this.rig.type = ERigidBody2DType.Dynamic;
             }
         }

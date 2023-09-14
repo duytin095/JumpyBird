@@ -1,4 +1,4 @@
-import { _decorator, Button, Component, director, find, Input, Label, log, Node, sys } from 'cc';
+import { _decorator, Button, Component, director, Label, Node, sys } from 'cc';
 import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
 
@@ -19,7 +19,6 @@ export class UIManager extends Component {
     })
     private restartButton: Button;
 
-
     private highScore: number = 0;
     private currentScore: number = 0;
 
@@ -28,12 +27,13 @@ export class UIManager extends Component {
         this.restartButton.node.on(Node.EventType.TOUCH_START, (reloadGame:void) =>{
             director.loadScene('Game');
             director.resume();
+            GameManager.instance.allowPlayerToMove();
         });
     }
 
     updateScore(score: number){
         this.currentScore = score;
-        this.currentScoreLable.string = ('' + this.currentScore);
+        this.currentScoreLable.string = (this.currentScore.toString());
     }
 
     addScore(addScore: number){
