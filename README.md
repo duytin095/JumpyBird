@@ -1,5 +1,6 @@
-🐦 JumpyBird
+🐦 JumpyBird <br>
   A lightweight Flappy Bird-style game built using Cocos Creator and TypeScript — designed as an easy-to-understand project for learning and experimenting with 2D game development.
+  
     🔗 Live Demo: Play JumpyBird on Netlify
     🧠 Built to explore game mechanics, scene management, physics, and scripting in Cocos Creator.
     
