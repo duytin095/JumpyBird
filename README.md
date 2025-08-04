@@ -4,12 +4,11 @@
 </p>
 
 <p align="center">
-  🔗 <a href="https://jumpybird.netlify.app" target="_blank"><strong>Live Demo: Play JumpyBird on Netlify</strong></a><br>
+  🔗 <a href="https://jumpy-bird-by-tean.netlify.app" target="_blank"><strong>Live Demo: Play JumpyBird on Netlify</strong></a><br>
   🧠 Built to explore game mechanics, scene management, physics, and scripting in Cocos Creator.
 </p>
 
 ---
-
 ## 🎮 Features
 
 - 🧱 **Simple mechanics**: Tap or click to jump and avoid pipes  
