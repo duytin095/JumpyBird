@@ -32,7 +32,10 @@ This project was created to:
 ## 📸 Screenshots
 
 <p align="center">
-  <img width="375" height="667" alt="JumpyBird screenshot" src="https://github.com/user-attachments/assets/95722943-83a0-4dce-a148-52c9592cbfc7" />
+<!--   <img width="375" height="667" alt="JumpyBird screenshot" src="https://github.com/user-attachments/assets/95722943-83a0-4dce-a148-52c9592cbfc7" /> -->
+  <img width="375" height="667" alt="JumpyBird screenshot" src="https://private-user-images.githubusercontent.com/93784460/473937108-fd2c4a5f-d055-4489-ad3b-49b443b01a3b.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTQyOTU2NDEsIm5iZiI6MTc1NDI5NTM0MSwicGF0aCI6Ii85Mzc4NDQ2MC80NzM5MzcxMDgtZmQyYzRhNWYtZDA1NS00NDg5LWFkM2ItNDliNDQzYjAxYTNiLmdpZj9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA4MDQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwODA0VDA4MTU0MVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTU4MDY3MjBmN2RkMTllMTAwMDlhOWM5MjZlMzE1NzFjY2YyMWMxZjUyYTIxZTk5NDAzYWEzZTRmNGNlMzcyYTcmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.JlbjUEyIgagjsvoN_It3sbr-OV2tf50VRo5WRa9XFZ4" />
+  
+  
 </p>
 
 ---
