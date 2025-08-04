@@ -16,5 +16,8 @@ This project was created to:
     Learn component-based design with TypeScript
     Understand event handling, physics, and game loops
 📸 Screenshots
-<img width="750" height="1334" alt="image" src="https://github.com/user-attachments/assets/95722943-83a0-4dce-a148-52c9592cbfc7" />
-
+<p align="center">
+  <img width="750" height="1334" alt="image" src="https://github.com/user-attachments/assets/95722943-83a0-4dce-a148-52c9592cbfc7" />
+</p>
+📄 License
+  MIT License. Feel free to fork, remix, and learn from it!
