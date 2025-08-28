@@ -13,7 +13,6 @@ export class Pipes extends Component{
     private disappearBound: number = -350;
      
     update() {
-
         if(GameManager.instance.startGame()){
             this.node.translate(new Vec3(this.speed, 0, 0), 1);
         }

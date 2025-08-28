@@ -225,7 +225,6 @@
       "__id__": 7
     },
     "lastPipe": null,
-    "speed": 300,
     "_id": "e7ZpOxBzNHNKc+ujstj+vy"
   },
   {
@@ -657,7 +656,6 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "player": null,
     "rig": null,
     "velocity": 20,
     "collider": null,
@@ -847,7 +845,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 68.57142639160156,
+      "width": 68.5714178728911,
       "height": 151.2
     },
     "_anchorPoint": {
@@ -880,7 +878,7 @@
     "_string": "0",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 120,
+    "_actualFontSize": 122.25,
     "_fontSize": 120,
     "_fontFamily": "Arial",
     "_lineHeight": 120,
@@ -2075,7 +2073,7 @@
   },
   {
     "__type__": "cc.SkinInfo",
-    "_enabled": false,
+    "_enabled": true,
     "_blurRadius": 0.01,
     "_sssIntensity": 3
   },

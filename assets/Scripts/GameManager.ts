@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Prefab, instantiate, math} from 'cc';
+import { _decorator, Component, Node, Prefab, instantiate, math, log} from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameManager')
